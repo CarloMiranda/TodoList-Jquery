@@ -23,7 +23,7 @@ $(document).ready(function() {
                 if ($("input").trim !== "") {
                     $("ul").append(`
                         <li class="d-flex my-2 p-2 border shadow justify-content-between fs-5">${$("input").val()}
-                        <span><button class="btn complete text-success">✔</button><button class="btn delete">❌</button></span></li>`)
+                        <span class="d-flex"><button class="btn complete text-success">✔</button><button class="btn delete">❌</button></span></li>`)
             
                     $("input").val(null) 
     
