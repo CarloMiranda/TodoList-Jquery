@@ -1,4 +1,4 @@
-
+// To get the data from local storage
 function storage() {
     var saveList = localStorage.getItem("saveList");
 
@@ -7,6 +7,7 @@ function storage() {
     }
 }
 
+// To save the data to local storage
 function saveData() {
     var currentData = $("ul").html();
     localStorage.setItem("saveList", currentData);
@@ -16,10 +17,11 @@ $(document).ready(function() {
     storage();
 
         $("button").click(function () {
-    
+            
+            // To make sure that the input field is not empty and not added to the list.
             if ($("input").val() !== ""){
     
-                
+                // When the input field is not empty, add the input value to the list.
                 if ($("input").trim !== "") {
                     $("ul").append(`
                         <li class="d-flex my-2 p-2 border shadow justify-content-between fs-5">
@@ -38,6 +40,7 @@ $(document).ready(function() {
     
         });
 
+        // To Bind Complete and Delete Buttons to make a funtion when there is an Event.
         function BtnEvents() {
             $(".complete").off().on("click", function () {
                 var $p = $(this).closest("li").find("p");
@@ -53,7 +56,7 @@ $(document).ready(function() {
             
                 saveData();
             });
-    
+            
             $(".delete").off().on("click", function () {
                 $(this).closest("li").remove();
                 saveData();
