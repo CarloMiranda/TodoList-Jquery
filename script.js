@@ -20,36 +20,39 @@ $(document).ready(function() {
             if ($("input").val() !== ""){
     
                 
-                if ($("input").trim !== null) {
-                    $("ul").append(`<li class="d-flex my-2 p-2 border shadow justify-content-between fs-5">${$("input").val()} <span><button class="btn complete text-success">✔</button><button class="btn delete">❌</button></span></li>`)
+                if ($("input").trim !== "") {
+                    $("ul").append(`
+                        <li class="d-flex my-2 p-2 border shadow justify-content-between fs-5">${$("input").val()}
+                        <span><button class="btn complete text-success">✔</button><button class="btn delete">❌</button></span></li>`)
             
                     $("input").val(null) 
     
                     saveData();
+                    BtnEvents();
                 }
             }
     
         });
 
-                              
-        $(".complete").click(function () {
-            var $li = $(this).closest("li");
-        
-            if ($(this).text() !== "Completed") {
-                $(this).text("Completed");
-                $li.css("text-decoration", "line-through");
-            } else {
-                $(this).text("✔");
-                $li.css("text-decoration", "none");
-            }
-        
-            // Save the updated data to localStorage
-            saveData();
-        });
-
-        $(".delete").click(function () {
-            $(this).closest("li").remove();
-            saveData();
-        })
+        function BtnEvents() {
+            $(".complete").off().on("click", function () {
+                var $li = $(this).closest("li");
+            
+                if ($(this).text() !== "Completed") {
+                    $(this).text("Completed");
+                    $li.css("text-decoration", "line-through");
+                } else {
+                    $(this).text("✔");
+                    $li.css("text-decoration", "none");
+                }
+            
+                saveData();
+            });
     
-})
+            $(".delete").off().on("click", function () {
+                $(this).closest("li").remove();
+                saveData();
+            });
+        }
+    BtnEvents();
+});
