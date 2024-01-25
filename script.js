@@ -22,9 +22,13 @@ $(document).ready(function() {
                 
                 if ($("input").trim !== "") {
                     $("ul").append(`
-                        <li class="d-flex my-2 p-2 border shadow justify-content-between fs-5">${$("input").val()}
-                        <span class="d-flex"><button class="btn complete text-success">✔</button><button class="btn delete">❌</button></span></li>`)
-            
+                        <li class="d-flex my-2 p-2 border shadow justify-content-between fs-5">
+                            <p>${$("input").val()}</p>
+                            <span class="d-flex">
+                                <button class="btn complete text-success">✔</button>
+                                <button class="btn delete">❌</button>
+                            </span>
+                        </li>`);
                     $("input").val(null) 
     
                     saveData();
@@ -36,14 +40,15 @@ $(document).ready(function() {
 
         function BtnEvents() {
             $(".complete").off().on("click", function () {
-                var $li = $(this).closest("li");
+                var $p = $(this).closest("li").find("p");
             
                 if ($(this).text() !== "Completed") {
                     $(this).text("Completed");
-                    $li.css("text-decoration", "line-through");
+                    $p.css("text-decoration", "line-through");
+                    $(this).css("text-decoration", "none");
                 } else {
                     $(this).text("✔");
-                    $li.css("text-decoration", "none");
+                    $p.css("text-decoration", "none");
                 }
             
                 saveData();
